@@ -10,12 +10,19 @@ import (
 
 func main() {
 	checkLinux()
+	checkRoot()
 	run()
 }
 
 func checkLinux() {
 	if runtime.GOOS != "linux" {
 		panic("This program can only run on Linux")
+	}
+}
+
+func checkRoot() {
+	if os.Geteuid() != 0 {
+		panic("This program can only run as root")
 	}
 }
 
