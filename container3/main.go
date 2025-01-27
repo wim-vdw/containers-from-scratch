@@ -52,7 +52,7 @@ func child() {
 	must(syscall.Sethostname([]byte("container")))
 	must(syscall.Chroot("/home/wim/alpinefs"))
 	must(syscall.Chdir("/"))
-	must(syscall.Mount("proc", "proc", "proc", 0, ""))
+	must(syscall.Mount("proc", "/proc", "proc", 0, ""))
 	must(cmd.Run())
 	must(syscall.Unmount("proc", 0))
 }
