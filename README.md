@@ -10,10 +10,12 @@ Requirements:
 - Must be run on Linux.
 - Requires root privileges.
 
-## container2 (Simple Linux UTS Namespace Runner)
+## container2 (Simple Linux UTS Namespace Runner - spawns a new child process)
 
 This program runs commands in a new UTS namespace, simulating a lightweight container by changing the hostname.  
-The program spawns a new process and sets the hostname using the `sethostname` system call.
+The program spawns a new process and sets the hostname using the `sethostname` system call.  
+When a process is created inside a namespace, all child processes it spawns will automatically belong to the same
+namespace unless explicitly configured otherwise.
 
 Requirements:
 
