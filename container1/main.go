@@ -9,24 +9,26 @@ import (
 )
 
 func main() {
-	checkLinux()
-	checkRoot()
+	must(checkLinux())
+	must(checkRoot())
 	switch os.Args[1] {
 	case "run":
 		run()
 	}
 }
 
-func checkLinux() {
+func checkLinux() error {
 	if runtime.GOOS != "linux" {
-		panic("this program can only run on Linux")
+		return fmt.Errorf("this program can only run on Linux")
 	}
+	return nil
 }
 
-func checkRoot() {
+func checkRoot() error {
 	if os.Geteuid() != 0 {
-		panic("this program must be run as root")
+		return fmt.Errorf("this program must be run as root")
 	}
+	return nil
 }
 
 func run() {
